@@ -98,7 +98,7 @@ public class SBinTre<T> {
 
         // p er nå null, dvs. ute av treet, q er den siste vi passerte
 
-        p = new Node<>(verdi);                   // oppretter en ny node som har den siste vi passerte som forelder, altså q
+        p = new Node<>(verdi, q);                   // oppretter en ny node som har den siste vi passerte som forelder, altså q
 
         if (q == null){
             rot = p;                  // p blir rotnode
