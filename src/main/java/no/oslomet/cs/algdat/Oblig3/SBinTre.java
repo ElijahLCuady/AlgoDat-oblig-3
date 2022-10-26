@@ -123,20 +123,22 @@ public class SBinTre<T> {
     }
 
     public int antall(T verdi) {
-        Node<T> p = rot;
-        int antallVerdi = 0;
+        Node<T> p = rot;                            // Starter i roten
+        int antall = 0;                             // Antall forekomster av "verdi"
 
-        while (p != null)
-        {
-            int cmp = comp.compare(verdi,p.verdi);
-            if (cmp < 0) p = p.venstre;
-            else
-            {
-                if (cmp == 0) antallVerdi++;
+        while (p != null){
+            int cmp = comp.compare(verdi, p.verdi); // Sammenligner verdi og p.verdi med comparator
+            if (cmp < 0){                           // Verdi er mindre enn p.verdi
+                p = p.venstre;                      // Vi går til venstre
+            }else{
+                if(cmp == 0){                       // Verdi og p.verdi er like
+                    antall++;
+                }
+                // Hvis verdi er verken mindre eller lik p.verdi så beveger vi oss til lengre til høyre
                 p = p.høyre;
             }
         }
-        return antallVerdi;
+        return antall;
     }
 
     public void nullstill() {
