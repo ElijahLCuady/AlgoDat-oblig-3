@@ -35,4 +35,14 @@ Hvis p er venstre barn til sin forelder f, gjelder:
 Hvis p er enebarn (f.høyre er null), er forelderen f den neste.
 Hvis p ikke er enebarn (dvs. f.høyre er ikke null), så er den neste den noden som kommer først i postorden i subtreet med f.høyre som rot.
 
-Oppgave 4 - 
+Oppgave 4
+postorden(Oppgave <? super T> oppgave):
+Først så bruker vi førstePostorden() med rot som parameter til å finne første noden i postorden. Etter det så bruker vi 
+en while-løkke som kjører så lenge p != null, altså så lenge vi ikke har kommet til enden i postorden. Når vi traverserer
+gjennom treet så utfører vi en oppgave med nodens verdi, og så bruker vi nestePostorden() til å bevege oss til neste node.
+
+postordenRecursive(Node<T> p, Oppgave<? super T> oppgave):
+Denne metoden bruker rekursive kall for å traverseret treet i postorden rekkefølge. Hvis p har et venstre barn så beveger 
+vi oss til den og gjør et rekursivt kall med venstret barnet og den samme oppgaven vi tok inn som parametere. Hvis tidligere
+if-setning ikke er sann så sjekker vi om det finnes et høyre barn og gjør det samme som i forrige if-setning. Hvis begge 
+if-setninger ikke er sanne så betyr det av vi har kommet til enden og kan dermed utføre oppgaven med p.verdi.
