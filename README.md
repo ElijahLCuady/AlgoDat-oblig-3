@@ -4,7 +4,6 @@ Denne oppgaven er en innlevering i Algoritmer og Datastrukturer.
 Oppgaven er levert av følgende student:
 * Elijah Lee Cuady, S364563, s364563@oslomet.no
 
-
 # Oppgavebeskrivelse
 
 Oppgave 1 - leggInn(T)
@@ -44,5 +43,4 @@ gjennom treet så utfører vi en oppgave med nodens verdi, og så bruker vi nest
 postordenRecursive(Node<T> p, Oppgave<? super T> oppgave):
 Denne metoden bruker rekursive kall for å traverseret treet i postorden rekkefølge. Hvis p har et venstre barn så beveger 
 vi oss til den og gjør et rekursivt kall med venstret barnet og den samme oppgaven vi tok inn som parametere. Hvis tidligere
-if-setning ikke er sann så sjekker vi om det finnes et høyre barn og gjør det samme som i forrige if-setning. Hvis begge 
-if-setninger ikke er sanne så betyr det av vi har kommet til enden og kan dermed utføre oppgaven med p.verdi.
+if-setning ikke er sann så sjekker vi om det finnes et høyre barn og gjør det samme som i forrige if-setning. 

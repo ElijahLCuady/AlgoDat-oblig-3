@@ -182,10 +182,10 @@ public class SBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        Node <T> p = førstePostorden(rot);
-        while(p != null){
-            oppgave.utførOppgave(p.verdi);
-            p = nestePostorden(p);
+        Node <T> p = førstePostorden(rot);          // Finner først node i postorden
+        while(p != null){                           // Kjører helt til vi kommer tilbake til rotnoden
+            oppgave.utførOppgave(p.verdi);          // Utfører oppgaven med p.verdi som parameter
+            p = nestePostorden(p);                  // Finner og beveger oss til neste i postorden
         }
     }
 
@@ -194,11 +194,11 @@ public class SBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        if (p.venstre != null){
-            postordenRecursive(p.venstre,oppgave);
+        if (p.venstre != null){                     // Sjekker om det finnes et venstre barn
+            postordenRecursive(p.venstre,oppgave);  // Rekursivt kall med venstre barnet med samme oppgave
         }
-        if (p.høyre != null){
-            postordenRecursive(p.høyre,oppgave);
+        if (p.høyre != null){                       // Sjekker om det finnes et høyre barn
+            postordenRecursive(p.høyre,oppgave);    // Rekursivt kall med venstre barnet med samme oppgave
         }
         oppgave.utførOppgave(p.verdi);
     }
