@@ -148,41 +148,45 @@ public class SBinTre<T> {
     private static <T> Node<T> førstePostorden(Node<T> p) {
 
         boolean sjekk = true;
-        while (sjekk) {
-            if (p.venstre != null){
+        while (sjekk) {                     // Vi fortsetter helt til vi har kommet til bladnoden som ligger lengst til venstre i treet
+            if (p.venstre != null){         // Hvis noden har et venstre barn så "besøker" vi den
                 p = p.venstre;
-            } else if(p.høyre != null) {
+            } else if(p.høyre != null) {    // Hvis noden ikke har et venstre barn, men har et høyre barn så "besøker" vi den
                 p = p.høyre;
-            }else{
-                sjekk = false;
+            }else{                          // Det er ikke mulig å gå til venstre eller til høyre, dvs. vi har kommet lengst til venstre i treet
+                sjekk = false;              // Bryter løkken
             }
         }
         return p;
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        Node <T> parent = p.forelder;
-        Node neste = null;
+        Node <T> parent = p.forelder;                   // Foreldre noden til p
+        Node neste = null;                              // Neste node
 
-        if(parent == null){
+        if(parent == null){                             // P er rotnoden og er den siste i postorden
             return null;
 
-        } else if(p == parent.høyre){
+        } else if(p == parent.høyre){                   // P er høyre barn til sin forelder, "parent"
             neste = parent;
 
-        } else if(p == parent.venstre){
-            if(parent.høyre == null){
+        } else if(p == parent.venstre){                 // P er venstre barn til sin forelder, "parent"
+            if(parent.høyre == null){                   // P er enebarn
                 neste = parent;
 
-            }else {
-                neste = førstePostorden(parent.høyre);
+            }else {                                     // P er ikke enebarn
+                neste = førstePostorden(parent.høyre);  // Neste vil være den noden som kommer først i postorden i subtreet med parent.høyre som rot
             }
         }
         return neste;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        Node <T> p = førstePostorden(rot);
+        while(p != null){
+            oppgave.utførOppgave(p.verdi);
+            p = nestePostorden(p);
+        }
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
@@ -190,7 +194,13 @@ public class SBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (p.venstre != null){
+            postordenRecursive(p.venstre,oppgave);
+        }
+        if (p.høyre != null){
+            postordenRecursive(p.høyre,oppgave);
+        }
+        oppgave.utførOppgave(p.verdi);
     }
 
     public ArrayList<T> serialize() {
