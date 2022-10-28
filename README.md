@@ -44,3 +44,13 @@ postordenRecursive(Node<T> p, Oppgave<? super T> oppgave):
 Denne metoden bruker rekursive kall for å traverseret treet i postorden rekkefølge. Hvis p har et venstre barn så beveger 
 vi oss til den og gjør et rekursivt kall med venstret barnet og den samme oppgaven vi tok inn som parametere. Hvis tidligere
 if-setning ikke er sann så sjekker vi om det finnes et høyre barn og gjør det samme som i forrige if-setning. 
+
+Oppgave 5
+serialize():
+Først så oppretter vi en ArrayList "liste" som skal returneres og en ArrayDeque "kø". Vi legger til roten i køen og hopper inn 
+i en while løkke som kjører helt til køen er tom. For hver iterasjon så flytter vi p til å være den første i køen samtidig
+som vi fjerner det første elementet i køen. Etter det så sjekker vi om p har barn, hvis p har barn så blir de lagt til i køen. 
+
+deserialize():
+Et nytt tre opprettes med c som komparator. En for-each-løkke legger til alle elementer i data-listen inn i treet. Til
+slutt så returnerer vi treet.

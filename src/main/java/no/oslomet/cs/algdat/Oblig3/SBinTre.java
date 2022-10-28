@@ -203,20 +203,20 @@ public class SBinTre<T> {
     public ArrayList<T> serialize() {
         if(tom()) return null;
 
-        ArrayList <T> liste = new ArrayList<>();
+        ArrayList <T> liste = new ArrayList<>();        // Listen som skal returneres
 
-        ArrayDeque<Node<T>> kø = new ArrayDeque<>();
-        kø.add(rot);
+        ArrayDeque<Node<T>> kø = new ArrayDeque<>();    // Oppretter en kø
+        kø.add(rot);                                    // Legger til roten i køen
 
-        while(!kø.isEmpty()){
-            Node<T> p = kø.pop();
-            liste.add(p.verdi);
-            if(p.venstre != null){
-                kø.add(p.venstre);
+        while(!kø.isEmpty()){                           // Løkke som kjører helt til køen er tom
+            Node<T> p = kø.pop();                       // Oppretter node p som er lik første i køen, fjerner også første element i køen
+            liste.add(p.verdi);                         // Legger til verdien til noen i listen
+            if(p.venstre != null){                      // Sjekker om p har et venstre barn
+                kø.add(p.venstre);                      // Legger til venstre barnet i køen
             }
 
-            if(p.høyre != null){
-                kø.add(p.høyre);
+            if(p.høyre != null){                        // Sjekker om p har et høyre barn
+                kø.add(p.høyre);                        // Legger til venstre barnet i køen
             }
         }
 
@@ -225,8 +225,8 @@ public class SBinTre<T> {
 
     static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
 
-        SBinTre<K> tre = new SBinTre<>(c);
-        for (K value : data){
+        SBinTre<K> tre = new SBinTre<>(c);  // Ny tre
+        for (K value : data){               // Legger til alle elementer i data-listen inn i treet
             tre.leggInn(value);
         }
 
